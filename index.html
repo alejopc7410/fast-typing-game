@@ -5,20 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./assets/style/index.css" media="all">
-    <script src="./assets/script/index.js" defer></script>
+    <script src="./assets/script/index.js" type="module"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
     <main>
-        <div class="container flexbox">
-            <button type="button">RESTART</button>
-            <div class="words-output">
-                <p class="word">4545</p>
+        <div class="video-container">
+            <video autoplay loop muted>
+                <source src="./assets/media/videos/background-video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="game-content">
+            <div class="container flexbox">
+                <button type="button" class="restart-button">RESTART</button>
+                <h1>TYPE AND FURIOUS</h1>
+                <div class="words-output">
+                    <p class="word">4545</p>
+                </div>
+                <input type="text">
+                <div class="timer-div">
+                    <p class="timer">5656</p>
+                </div>
+                <div class="score-div">
+                    <img src="./assets/media/images/speedometer.png" alt="Dodge Charger">
+                    <p class="score-text">0</p>
+                </div>
+                <audio src="./assets/media/sounds/handbrake.mp3" class="audio-car"></audio>
+                <audio src="./assets/media/sounds/Car engine.mp3" class="motor-sound"></audio>
+                <audio src="./assets/media/sounds/speeding up.mp3" class="speeding-up"></audio>
+                <div class="buildings">
+                    <img src="./assets/media/images/buildings.webp" alt="Buildings" class="towers tower1">
+                    <img src="./assets/media/images/buildings.webp" alt="Buildings" class="towers tower2">
+                    <img src="./assets/media/images/buildings.webp" alt="Buildings" class="towers tower3">
+                </div>
             </div>
-            <input type="text">
-            <div class="timer-div">
-                <p class="timer">5656</p>
-            </div>
-            <img src="./assets/media/images/car.png" alt="Dodge Charger" class="car">
         </div>
     </main>
 </body>
