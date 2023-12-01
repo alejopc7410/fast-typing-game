@@ -1,0 +1,104 @@
+@charset "utf-8";
+@font-face {
+    font-family: 'Antique Olive Nord';
+    src: local('Antique Olive Nord'), url('../media/fonts/ChangaOne-Italic.ttf'), format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border-style: none;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+.container {
+    width: min(100% - 30px, 1200px);
+    margin-inline: auto;
+}
+
+main {
+    background: url(../media/images/background.webp) center / cover no-repeat;
+    height: 100vh;
+}
+
+h1 {
+    font-family: 'Antique Olive Nord';
+}
+
+.flexbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+input {
+    height: 3em;
+    border-radius: 5em;
+    background: url(../media/images/input-background.webp) center / cover ;
+    text-align: center;
+    font-family: 'Antique Olive Nord';
+    color: #F4F3F3;
+    font-size: 18px;
+    margin-top: 2em;
+}
+
+button {
+    cursor: pointer;
+    position: absolute;
+    top: 2em;
+    left: 1em;
+    font-family: 'Antique Olive Nord';
+    height: 3em;
+    width: 7em;
+}
+
+.word {
+    background: url(../media/images/word-background.jpeg) center;
+    width: 10em;
+    height: 5em;
+    border-radius: 2em;
+    display: grid;
+    place-items: center;
+    font-family: 'Antique Olive Nord';
+    color: #F4F3F3;
+    font-size: 3em;
+    border: 2px solid;
+}
+
+.timer-div {
+    background: url(../media/images/lever-gear.webp) center / cover no-repeat;
+    width: 12em;
+    height: 12em;
+    position: absolute;
+    transform: translateY(-65%);
+    top: 50%;
+    right: 2em;
+    display: grid;
+    place-items: center;
+}
+
+.timer {
+    background-color: #1D1D1D;
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+    font-family: 'Antique Olive Nord';
+    display: grid;
+    place-items: center;
+    color: #F4F3F3;
+    font-size: 3em;
+}
+
+.car {
+    position: absolute;
+    transform: translateY(-65%);
+    top: 50%;
+    left: -5em;
+    width: 20em;
+}
+
