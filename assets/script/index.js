@@ -70,8 +70,8 @@ function displayRecord() {
     let attempt = new Score(new Date().toString().substring(0, 15), points, `${((100 * points) / 120).toFixed(2)}%`)
     gameContent.style.display = 'none'
     endModal.style.display = 'grid'
-    resultInfo.innerHTML = `<strong>Date:</strong>&nbsp ${attempt.date} <br> <strong>Hits:</strong>&nbsp ${attempt.hits} 
-    <br> <strong>Percentage:</strong> &nbsp${attempt.percentage}`
+    resultInfo.innerHTML = `<span class="result-title">Date:</span class="result-title">&nbsp &nbsp ${attempt.date} <br> <span class="result-title">Hits:</span class="result-title">&nbsp &nbsp ${attempt.hits} 
+    <br> <span class="result-title">Percentage:</span class="result-title"> &nbsp &nbsp${attempt.percentage}`
     console.log(attempt.percentage)
 }
 

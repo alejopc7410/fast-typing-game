@@ -89,6 +89,7 @@ input {
     font-family: 'Antique Olive Nord';
     height: 3em;
     width: 7em;
+    font-size: 1.3em;
 }
 
 .words-output {
@@ -225,16 +226,16 @@ input {
 
 .modal h2 {
     font-family: 'Antique Olive Nord';
-    font-size: 2em;
+    font-size: 2.5em;
 
 }
 
-span {
+h2 span {
     background-color: #1D1D1D;
     color: #F4F3F3;
     padding: 0.25em;
     font-family: 'Antique Olive Nord';
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .modal p {
@@ -246,6 +247,7 @@ span {
     text-align: center;
     background-color: rgb(0 0 0 / 0.6);
     line-height: 1.7;
+    font-size: 1.3em;
 }
 
 .end-modal {
@@ -288,6 +290,7 @@ span {
     color: #F4F3F3;
     text-align: left;
     background-color: rgb(0 0 0 / 0.6);
+    font-size: 1.6em;
 }
 
 .restart-button-final {
@@ -297,5 +300,13 @@ span {
     width: 8em;
     background-color: #F4F3F3;
     color: #000;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    border: 2.5px solid #000;
+}
+
+.result-title {
+    font-weight: 700;
+    font-size: 1.3em;
+    background-color: #1D1D1D;
+    color: #F4F3F3;
 }
