@@ -25,6 +25,8 @@ motorSound.type = 'audio/mp3';
 audiaoCar.type = 'audio/mp3';
 let currentWord;
 let points = 0;
+let timeLeft;
+let timeFunc = time()
 
 function randomWord() {
     let randomIndex = Math.floor(Math.random() * words.length);
@@ -51,7 +53,7 @@ function inputVerification() {
 };
 
 function time() {
-    let timeLeft = 99;
+    timeLeft = 99;
     let timing = setInterval(() => {
             timer.textContent = timeLeft;
             timeLeft--;
@@ -62,7 +64,6 @@ function time() {
                 displayRecord()
             };
         }, 1000);
-
 };
 
 function getDate() {
@@ -79,18 +80,9 @@ function displayRecord() {
     endModal.style.display = 'grid'
 }
 
-function playBackgroundMusic() {
-    onEvent('ended', motorSound, () => {backgroundSound.play();})
-    onEvent('ended', backgroundSound, () => {
-        backgroundSound.currentTime = 0;
-        backgroundSound.play();
-    })
-}
-
 function start() {
     gameContent.style.display = 'block'
     startModal.style.display = 'none'
-    playBackgroundMusic()
     motorSound.play();
     restart()
 }
@@ -99,16 +91,18 @@ function restart() {
     gameContent.style.display = 'block'
     endModal.style.display = 'none'
     scoreText.innerText = points;
-    backgroundSound.play();
-    playBackgroundMusic()
     input.value = "";
+    backgroundSound.currentTime = 0
     randomWord();
+    timeLeft = 99
     points = 0;
-    time()
+    timeFunc
 }
 
-setInterval(() => {input.classList.add('green-shadow')}, 750);
+onEvent('ended', backgroundSound, () => {backgroundSound.play();})
 setInterval(() => {input.classList.remove('green-shadow')}, 1500);
+setInterval(() => {input.classList.add('green-shadow')}, 750);
+onEvent('ended', motorSound, () => {backgroundSound.play();})
 onEvent('input', input, inputVerification);
 onEvent('click', restartBtn, restart);
 onEvent('click', finalBtn, restart);
