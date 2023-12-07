@@ -25,7 +25,6 @@
 }
 
 main {
-    /*background: url(../media/images/background.webp) center / cover no-repeat;*/
     height: 100vh;
     overflow: hidden;
 }
@@ -87,9 +86,17 @@ input {
     top: 2em;
     left: 1em;
     font-family: 'Antique Olive Nord';
-    height: 3em;
-    width: 7em;
-    font-size: 1.3em;
+    height: 2.5em;
+    width: 6em;
+    font-size: 1.2em;
+}
+
+.restart-button span:first-child {
+    display: block;
+}
+
+.restart-button span:last-child {
+    display: none;
 }
 
 .words-output {
@@ -207,7 +214,7 @@ input {
 
 .modal {
     width: 50%;
-    height: 60%;
+    height: 65%;
     background: url(../media/images/metal-ground.jpg);
     display: grid;
     place-items: center;
@@ -227,12 +234,12 @@ input {
 .modal h2 {
     font-family: 'Antique Olive Nord';
     font-size: 2.5em;
-
+    margin-top: 0.5em;
 }
 
 h2 span {
-    background-color: #1D1D1D;
-    color: #F4F3F3;
+    background-color: #000; 
+    color: #ffff14;
     padding: 0.25em;
     font-family: 'Antique Olive Nord';
     font-size: 1.3em;
@@ -241,7 +248,7 @@ h2 span {
 .modal p {
     font-family: Rubik, sans-serif;
     font-weight: 700;
-    padding: 1em 4em;
+    padding: 1em 1.5em;
     width: 85%;
     color: #F4F3F3;
     text-align: center;
@@ -262,7 +269,7 @@ h2 span {
 
 .final-modal {
     width: 30%;
-    height: 70%;
+    height: 80%;
     background: url(../media/images/metal-ground.jpg);
     display: grid;
     place-items: center;
@@ -272,8 +279,8 @@ h2 span {
 .final-modal h2 {
     cursor: pointer;
     font-family: 'Antique Olive Nord';
-    height: 3em;
-    width: 8em;
+    height: 2em;
+    width: 6em;
     background-color: #000;
     color: #F4F3F3;
     font-size: 2.5em;
@@ -284,7 +291,7 @@ h2 span {
 .final-modal p {
     font-family: Rubik, sans-serif;
     font-weight: 700;
-    padding: 1em 3em;
+    padding: 1em 0.5em;
     line-height: 2;
     width: 85%;
     color: #F4F3F3;

@@ -1,6 +1,6 @@
 'use strict';
-import {select, selectAll, onEvent, words} from './utility.js';
-import {Score} from './classes.js'
+import { select, selectAll, onEvent, words } from './utility.js';
+import { Score } from './Score.js'
 
 const wordOutput = select('.word');
 const input = select('input');
@@ -24,14 +24,11 @@ audiaoCar.type = 'audio/mp3';
 let points = 0;
 let currentWord;
 
-
-
 function randomWord() {
     let randomIndex = Math.floor(Math.random() * words.length);
     let index = words.indexOf(currentWord);
     currentWord = words[randomIndex];
     wordOutput.innerText = currentWord;
-    console.log(currentWord);
 
     if (index !== -1) {
         words.splice(index, 1);
@@ -46,34 +43,34 @@ function inputVerification() {
         points++;
         scoreText.innerText = points;
         wordOutput.classList.add("shadow");
-        setTimeout(() => {wordOutput.classList.remove("shadow");}, 400);
+        setTimeout(() => { wordOutput.classList.remove("shadow"); }, 400);
         speedingUp.play();
     };
 };
 
 
 function time() {
-    let timeLeft = 75;
-    let timing = 
-    setInterval(() => {
-        timer.textContent = timeLeft;
-        timeLeft--;
-        if (timeLeft < 0) {
-            clearInterval(timing);
-            audiaoCar.play();
-            backgroundSound.pause()
-            displayRecord()
-        };
-    }, 1000);
-}; 
+    let timeLeft = 98;
+    let timing =
+        setInterval(() => {
+            timer.textContent = timeLeft;
+            timeLeft--;
+            if (timeLeft < 0) {
+                clearInterval(timing);
+                audiaoCar.play();
+                backgroundSound.pause()
+                displayRecord()
+            };
+        }, 1000);
+};
 function displayRecord() {
     let attempt = new Score(new Date().toString().substring(0, 15), points, `${((100 * points) / 120).toFixed(2)}%`)
     gameContent.style.display = 'none'
     endModal.style.display = 'grid'
     resultInfo.innerHTML = `<span class="result-title">Date:</span class="result-title">&nbsp &nbsp ${attempt.date} <br> <span class="result-title">Hits:</span class="result-title">&nbsp &nbsp ${attempt.hits} 
     <br> <span class="result-title">Percentage:</span class="result-title"> &nbsp &nbsp${attempt.percentage}`
-    console.log(attempt.percentage)
 }
+input.focus()
 
 function start() {
     points = 0;
@@ -94,7 +91,7 @@ function start() {
 }
 
 onEvent('click', startBtn, start);
-onEvent('click', restartBtn, () => {location.reload()});
+onEvent('click', restartBtn, () => { location.reload() });
 onEvent('click', finalBtn, () => {
     startModal.style.display = 'grid'
     gameContent.style.display = 'none'
@@ -102,5 +99,5 @@ onEvent('click', finalBtn, () => {
 });
 onEvent('input', input, inputVerification);
 
-setInterval(() => {input.classList.add('green-shadow')}, 750);
-setInterval(() => {input.classList.remove('green-shadow')}, 1500);
+setInterval(() => { input.classList.add('green-shadow') }, 750);
+setInterval(() => { input.classList.remove('green-shadow') }, 1500);
