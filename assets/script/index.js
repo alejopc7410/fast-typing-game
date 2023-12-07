@@ -1,34 +1,36 @@
 'use strict';
-import { select, selectAll, onEvent, words } from './utility.js';
+import { select, onEvent, words } from './utility.js';
 import { Score } from './Score.js'
 
-const wordOutput = select('.word');
-const input = select('input');
+const backgroundSound = select('.background-sound')
+const finalBtn = select('.restart-button-final')
 const restartBtn = select('.restart-button');
-const timer = select('.timer');
-const audiaoCar = select('.audio-car');
+const gameContent = select('.game-content')
+const startModal = select('.start-modal')
 const motorSound = select('.motor-sound');
 const speedingUp = select('.speeding-up');
-const backgroundSound = select('.background-sound')
+const percentage = select('.percentage')
 const scoreText = select('.score-text');
-const startModal = select('.start-modal')
+const audiaoCar = select('.audio-car');
 const endModal = select('.end-modal')
-const gameContent = select('.game-content')
-const resultInfo = select('.final-modal p')
-const finalBtn = select('.restart-button-final')
 const startBtn = select('.start-btn')
-speedingUp.type = 'audio/mp3';
+const wordOutput = select('.word');
+const timer = select('.timer');
+const input = select('input');
+const date = select('.date')
+const hits = select('.hits')
 backgroundSound.type = 'audio/mp3';
+speedingUp.type = 'audio/mp3';
 motorSound.type = 'audio/mp3';
 audiaoCar.type = 'audio/mp3';
-let points = 0;
 let currentWord;
+let points = 0;
 
 function randomWord() {
     let randomIndex = Math.floor(Math.random() * words.length);
     let index = words.indexOf(currentWord);
-    currentWord = words[randomIndex];
     wordOutput.innerText = currentWord;
+    currentWord = words[randomIndex];
 
     if (index !== -1) {
         words.splice(index, 1);
@@ -38,66 +40,76 @@ function randomWord() {
 function inputVerification() {
     let inputValue = input.value;
     if (inputValue == currentWord) {
+        setTimeout(() => { wordOutput.classList.remove("shadow"); }, 400);
+        wordOutput.classList.add("shadow");
+        scoreText.innerText = points;
+        speedingUp.play();
         input.value = "";
         randomWord();
         points++;
-        scoreText.innerText = points;
-        wordOutput.classList.add("shadow");
-        setTimeout(() => { wordOutput.classList.remove("shadow"); }, 400);
-        speedingUp.play();
     };
 };
 
-
 function time() {
-    let timeLeft = 98;
-    let timing =
-        setInterval(() => {
+    let timeLeft = 99;
+    let timing = setInterval(() => {
             timer.textContent = timeLeft;
             timeLeft--;
             if (timeLeft < 0) {
+                backgroundSound.pause()
                 clearInterval(timing);
                 audiaoCar.play();
-                backgroundSound.pause()
                 displayRecord()
             };
         }, 1000);
+
 };
-function displayRecord() {
-    let attempt = new Score(new Date().toString().substring(0, 15), points, `${((100 * points) / 120).toFixed(2)}%`)
-    gameContent.style.display = 'none'
-    endModal.style.display = 'grid'
-    resultInfo.innerHTML = `<span class="result-title">Date:</span class="result-title">&nbsp &nbsp ${attempt.date} <br> <span class="result-title">Hits:</span class="result-title">&nbsp &nbsp ${attempt.hits} 
-    <br> <span class="result-title">Percentage:</span class="result-title"> &nbsp &nbsp${attempt.percentage}`
+
+function getDate() {
+    let date = new Date();
+    return date.toLocaleString().substring(0, 9)
 }
-input.focus()
+
+function displayRecord() {
+    let attempt = new Score(getDate(), points, `${((100 * points) / 120).toFixed(2)}%`)
+    percentage.textContent = attempt.percentage
+    gameContent.style.display = 'none'
+    date.textContent = attempt.date
+    hits.textContent = attempt.hits
+    endModal.style.display = 'grid'
+}
+
+function playBackgroundMusic() {
+    onEvent('ended', motorSound, () => {backgroundSound.play();})
+    onEvent('ended', backgroundSound, () => {
+        backgroundSound.currentTime = 0;
+        backgroundSound.play();
+    })
+}
 
 function start() {
-    points = 0;
-    scoreText.innerText = points;
-    randomWord();
-    time()
-    setTimeout(() => {
-        backgroundSound.play();
-        onEvent('ended', backgroundSound, () => {
-            backgroundSound.currentTime = 0;
-            backgroundSound.play();
-        })
-    }, 7000);
-    startModal.style.display = 'none'
     gameContent.style.display = 'block'
+    startModal.style.display = 'none'
+    playBackgroundMusic()
     motorSound.play();
-    console.log(points)
+    restart()
 }
 
-onEvent('click', startBtn, start);
-onEvent('click', restartBtn, () => { location.reload() });
-onEvent('click', finalBtn, () => {
-    startModal.style.display = 'grid'
-    gameContent.style.display = 'none'
+function restart() {
+    gameContent.style.display = 'block'
     endModal.style.display = 'none'
-});
-onEvent('input', input, inputVerification);
+    scoreText.innerText = points;
+    backgroundSound.play();
+    playBackgroundMusic()
+    input.value = "";
+    randomWord();
+    points = 0;
+    time()
+}
 
-setInterval(() => { input.classList.add('green-shadow') }, 750);
-setInterval(() => { input.classList.remove('green-shadow') }, 1500);
+setInterval(() => {input.classList.add('green-shadow')}, 750);
+setInterval(() => {input.classList.remove('green-shadow')}, 1500);
+onEvent('input', input, inputVerification);
+onEvent('click', restartBtn, restart);
+onEvent('click', finalBtn, restart);
+onEvent('click', startBtn, start);

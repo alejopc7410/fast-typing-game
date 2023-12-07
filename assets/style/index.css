@@ -268,7 +268,7 @@ h2 span {
 }
 
 .final-modal {
-    width: 30%;
+    width: 35%;
     height: 80%;
     background: url(../media/images/metal-ground.jpg);
     display: grid;
@@ -288,17 +288,35 @@ h2 span {
     place-items: center;
 }
 
-.final-modal p {
-    font-family: Rubik, sans-serif;
-    font-weight: 700;
-    padding: 1em 0.5em;
-    line-height: 2;
-    width: 85%;
-    color: #F4F3F3;
-    text-align: left;
+.final-modal ul {
+    list-style: none;
+    width: 95%;
     background-color: rgb(0 0 0 / 0.6);
-    font-size: 1.6em;
+    padding: 1em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
 }
+
+.final-modal li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.8em;
+    font-family: 'Antique Olive Nord';
+    margin-bottom: 1em;
+}
+
+li span {
+    font-size: 1.2em;
+    font-family: 'Antique Olive Nord';
+}
+
+li span:nth-child(1) {width: 40%;}
+li span:nth-child(2) {width: 20%;}
+li:nth-child(2) span:nth-child(1) {padding-right: 10px; font-size: 1em;}
+li span:nth-child(3) {width: 40%;}
 
 .restart-button-final {
     cursor: pointer;
@@ -309,11 +327,4 @@ h2 span {
     color: #000;
     font-size: 1.1em;
     border: 2.5px solid #000;
-}
-
-.result-title {
-    font-weight: 700;
-    font-size: 1.3em;
-    background-color: #1D1D1D;
-    color: #F4F3F3;
 }
