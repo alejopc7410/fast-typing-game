@@ -1,5 +1,6 @@
 'use strict';
 import { select, onEvent, words } from './utility.js';
+import { recordScore, scoreArray, hideScore, showScore } from './record-score.js';
 import { Score } from './Score.js'
 
 const backgroundSound = select('.background-sound')
@@ -15,10 +16,13 @@ const audiaoCar = select('.audio-car');
 const endModal = select('.end-modal')
 const startBtn = select('.start-btn')
 const wordOutput = select('.word');
+const closeBtn = select('.close-btn')
+const showScoreBtn = select('.show-score-btn')
 const timer = select('.timer');
 const input = select('input');
 const date = select('.date')
 const hits = select('.hits')
+const scoreList = select('.score-list')
 backgroundSound.type = 'audio/mp3';
 speedingUp.type = 'audio/mp3';
 motorSound.type = 'audio/mp3';
@@ -28,6 +32,7 @@ let points = 0;
 let timeLeft;
 let timing;
 let timeFunc = time()
+scoreArray;
 
 function randomWord() {
     let randomIndex = Math.floor(Math.random() * words.length);
@@ -54,15 +59,15 @@ function inputVerification() {
 };
 
 function time() {
-    timeLeft = 99;
+    timeLeft = 19;
     timing = setInterval(() => {
             timer.textContent = timeLeft;
             timeLeft--;
-            if (timeLeft < 0 && startModal.style.display === 'none') {
+            if (timeLeft == 0 && startModal.style.display === 'none') {
                 backgroundSound.pause()
-                clearInterval(timing);
                 audiaoCar.play();
                 displayRecord()
+                recordScore(scoreList, points)
             };
         }, 1000);
 };
@@ -97,14 +102,15 @@ function restart() {
     input.value = "";
     backgroundSound.currentTime = 0
     backgroundSound.play();
-    timeLeft = 99
+    timeLeft = 19
     timer.textContent = timeLeft;
 }
-
 onEvent('ended', backgroundSound, () => {backgroundSound.play();})
 setInterval(() => {input.classList.remove('green-shadow')}, 1500);
 setInterval(() => {input.classList.add('green-shadow')}, 750);
 onEvent('ended', motorSound, () => {backgroundSound.play();})
+onEvent('click', closeBtn, hideScore)
+onEvent('click', showScoreBtn, showScore)
 onEvent('input', input, inputVerification);
 onEvent('click', restartBtn, restart);
 onEvent('click', finalBtn, restart);

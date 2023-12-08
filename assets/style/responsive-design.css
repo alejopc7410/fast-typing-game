@@ -14,26 +14,30 @@
         flex-direction: row;
     }
     
-    li {
+    .final-modal li {
         flex-direction: column;
     }
 
-    li span {
+    .final-modal li span {
         height: 30%;
     }
 
-    li:nth-child(2) span:nth-child(1) {
+    .final-modal li:nth-child(2) span:nth-child(1) {
         padding-right: 0;
     }
 
-    li:nth-child(2) span {
+    .final-modal li:nth-child(2) span {
         width: 100%;
         display: flex;
         justify-content: end;
     }
 
-    li:nth-child(2) span:nth-child(1) {
+    .final-modal li:nth-child(2) span:nth-child(1) {
         font-size: 1em;
+    }
+
+    .final-score h2 {
+        width: 5em;
     }
 }
 
@@ -47,6 +51,10 @@
     h2 span {
         padding: 0.18em;
         font-size: 1em;
+    }
+
+    .final-score li {
+        font-size: 1.5em;
     }
 }
 
@@ -83,16 +91,20 @@
         height: 4em;
     }
 
-    li {
+    .final-modal li {
         font-size: 1.5em;
     }
 
-    li span {
+    .final-modal li span {
         font-size: 1em;
     }
 
     .final-modal {
         width: 40%;
+    }
+
+    .final-score {
+        width: 38%;
     }
 }
 
@@ -157,15 +169,19 @@
         width: 51%;
     }
 
-    li:nth-child(1) {
+    .final-modal li:nth-child(1) {
         position: absolute;
         width: 30%;
         left: 10px;
     }
 
-    li:nth-child(2) {
+    .final-modal li:nth-child(2) {
         position: relative;
         left: 2.5em;
+    }
+
+    .final-score {
+        width: 48%;
     }
 
 }
@@ -238,6 +254,12 @@
         display: none;
     }
 
+    .show-score-btn {
+        left: 1.2em;
+        height: 3.2em;
+        width: 3.2em;
+    }
+
     .restart-button span:last-child {
         display: block;
     }
@@ -252,6 +274,16 @@
 
     .final-modal {
         width: 70%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .final-score {
+        width: 60%;
+    }
+
+    .final-score li {
+        font-size: 1.3em;
     }
 }
 
@@ -328,6 +360,17 @@
     .final-modal {
         width: 96%;
     }
+
+    .show-score-btn {
+        top: 2.5em;
+        left: 5em;
+        height: 3em;
+        width: 3em;
+    }
+
+    .final-score {
+        width: 80%;
+    }
 }
 
 @media screen and (max-width: 352px) {
@@ -355,16 +398,19 @@
         font-size: 2.5em;
     }
 
-    ul {
+    .final-modal ul {
         margin-right: 1px;
     }
 
-    li:nth-child(2) span {
+    .final-modal li:nth-child(2) span {
         padding-right: 20px;
     }
 
-    li:nth-child(2) span:nth-child(1) {
+    .final-modal li:nth-child(2) span:nth-child(1) {
         padding-right: 2px;
+    }
+    h1 {
+        font-size: 2em;
     }
 }
 

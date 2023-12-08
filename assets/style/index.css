@@ -56,7 +56,7 @@ h1 {
     width: 100%;
     height: 100%;
     background-color: rgb(0 0 0 / 0.6);
-    display: none;
+    display: block;
 }
 
 .flexbox {
@@ -208,7 +208,7 @@ input {
     left: 0;
     width: 100%;
     height: 100%;
-    display: grid;
+    display: none;
     place-items: center;
 }
 
@@ -308,15 +308,15 @@ h2 span {
     margin-bottom: 1em;
 }
 
-li span {
+.final-modal li span {
     font-size: 1.2em;
     font-family: 'Antique Olive Nord';
 }
 
-li span:nth-child(1) {width: 40%;}
-li span:nth-child(2) {width: 20%;}
-li:nth-child(2) span:nth-child(1) {padding-right: 10px; font-size: 1em;}
-li span:nth-child(3) {width: 40%;}
+.final-modal li span:nth-child(1) {width: 40%;}
+.final-modal li span:nth-child(2) {width: 20%;}
+.final-modal li:nth-child(2) span:nth-child(1) {padding-right: 10px; font-size: 1em;}
+.final-modal li span:nth-child(3) {width: 40%;}
 
 .restart-button-final {
     cursor: pointer;
@@ -327,4 +327,72 @@ li span:nth-child(3) {width: 40%;}
     color: #000;
     font-size: 1.1em;
     border: 2.5px solid #000;
+}
+
+.final-score {
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: 28%;
+    background: url(../media/images/final-score.png) center / cover no-repeat;
+    display: block;
+}
+
+.final-score h2 {
+    font-family: 'Antique Olive Nord';
+    color: #F4F3F3;
+    font-size: 2.3em;
+    margin-top: 0.8em;
+    margin-left: 0.8em;
+}
+
+.score-list {
+    list-style: none;
+    width: 95%;
+    padding: 1em;
+    color: #fff;
+    justify-content: start;
+    position: relative;
+    margin-top: 1.5em;
+    margin-left: 0.8em;
+}
+
+.close-btn {
+    background-color: #F4F3F3;
+    width: 2.8em;
+    height: 2.8em;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 2.2em;
+    right: 1.7em;
+    font-size: 0.9em;
+}
+
+.score-list li {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    display: flex;
+    font-family: 'Antique Olive Nord';
+    justify-content: space-between;
+}
+
+.score-list li span:nth-child(1) { width: 10%;}
+.score-list li span:nth-child(2) { width: 60%; text-align: center;}
+.score-list li span:nth-child(3) { width: 30%; text-align: right;}
+
+.show-score-btn {
+    background-color: #F4F3F3;
+    width: 3.5em;
+    height: 3.5em;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 8em; 
+    left: 3.8em;
+    font-size: 0.9em;
 }
