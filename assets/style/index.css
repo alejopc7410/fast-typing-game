@@ -56,7 +56,7 @@ h1 {
     width: 100%;
     height: 100%;
     background-color: rgb(0 0 0 / 0.6);
-    display: block;
+    display: none;
 }
 
 .flexbox {
@@ -208,7 +208,7 @@ input {
     left: 0;
     width: 100%;
     height: 100%;
-    display: none;
+    display: grid;
     place-items: center;
 }
 
@@ -335,7 +335,7 @@ h2 span {
     height: 100%;
     width: 28%;
     background: url(../media/images/final-score.png) center / cover no-repeat;
-    display: block;
+    display: none;
 }
 
 .final-score h2 {
@@ -387,7 +387,7 @@ h2 span {
     background-color: #F4F3F3;
     width: 3.5em;
     height: 3.5em;
-    display: grid;
+    display: none;
     place-items: center;
     border-radius: 50%;
     cursor: pointer;

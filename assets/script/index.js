@@ -17,6 +17,7 @@ const endModal = select('.end-modal')
 const startBtn = select('.start-btn')
 const wordOutput = select('.word');
 const closeBtn = select('.close-btn')
+const finalScoreDiv = select('.final-score')
 const showScoreBtn = select('.show-score-btn')
 const timer = select('.timer');
 const input = select('input');
@@ -31,7 +32,6 @@ let currentWord;
 let points = 0;
 let timeLeft;
 let timing;
-let timeFunc = time()
 scoreArray;
 
 function randomWord() {
@@ -67,6 +67,7 @@ function time() {
                 backgroundSound.pause()
                 audiaoCar.play();
                 displayRecord()
+                showScoreBtn.style.display = 'grid'
                 recordScore(scoreList, points)
             };
         }, 1000);
@@ -90,6 +91,7 @@ function start() {
     gameContent.style.display = 'block'
     startModal.style.display = 'none'
     motorSound.play();
+    time();
     randomWord();
 }
 
@@ -98,13 +100,15 @@ function restart() {
     endModal.style.display = 'none'
     points = 0;
     scoreText.innerText = points;
-    timeFunc
     input.value = "";
     backgroundSound.currentTime = 0
     backgroundSound.play();
     timeLeft = 19
     timer.textContent = timeLeft;
+    clearInterval(timing)
+    time()
 }
+
 onEvent('ended', backgroundSound, () => {backgroundSound.play();})
 setInterval(() => {input.classList.remove('green-shadow')}, 1500);
 setInterval(() => {input.classList.add('green-shadow')}, 750);
