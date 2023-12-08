@@ -26,13 +26,14 @@ audiaoCar.type = 'audio/mp3';
 let currentWord;
 let points = 0;
 let timeLeft;
+let timing;
 let timeFunc = time()
 
 function randomWord() {
     let randomIndex = Math.floor(Math.random() * words.length);
     let index = words.indexOf(currentWord);
-    wordOutput.innerText = currentWord;
     currentWord = words[randomIndex];
+    wordOutput.innerText = currentWord;
 
     if (index !== -1) {
         words.splice(index, 1);
@@ -44,20 +45,20 @@ function inputVerification() {
     if (inputValue == currentWord) {
         setTimeout(() => { wordOutput.classList.remove("shadow"); }, 400);
         wordOutput.classList.add("shadow");
+        points++;
         scoreText.innerText = points;
         speedingUp.play();
         input.value = "";
         randomWord();
-        points++;
     };
 };
 
 function time() {
     timeLeft = 99;
-    let timing = setInterval(() => {
+    timing = setInterval(() => {
             timer.textContent = timeLeft;
             timeLeft--;
-            if (timeLeft < 0) {
+            if (timeLeft < 0 && startModal.style.display === 'none') {
                 backgroundSound.pause()
                 clearInterval(timing);
                 audiaoCar.play();
@@ -84,19 +85,20 @@ function start() {
     gameContent.style.display = 'block'
     startModal.style.display = 'none'
     motorSound.play();
-    restart()
+    randomWord();
 }
 
 function restart() {
     gameContent.style.display = 'block'
     endModal.style.display = 'none'
+    points = 0;
     scoreText.innerText = points;
+    timeFunc
     input.value = "";
     backgroundSound.currentTime = 0
-    randomWord();
+    backgroundSound.play();
     timeLeft = 99
-    points = 0;
-    timeFunc
+    timer.textContent = timeLeft;
 }
 
 onEvent('ended', backgroundSound, () => {backgroundSound.play();})
