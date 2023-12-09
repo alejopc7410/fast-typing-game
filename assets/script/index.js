@@ -63,7 +63,7 @@ function time() {
     timing = setInterval(() => {
             timer.textContent = timeLeft;
             timeLeft--;
-            if (timeLeft == 0 && startModal.style.display === 'none') {
+            if (timeLeft == -2 && startModal.style.display === 'none') {
                 backgroundSound.pause()
                 audiaoCar.play();
                 displayRecord()
