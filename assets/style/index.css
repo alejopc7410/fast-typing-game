@@ -346,6 +346,14 @@ h2 span {
     margin-left: 0.8em;
 }
 
+.final-score p {
+    font-family: 'Antique Olive Nord';
+    color: #F4F3F3;
+    font-size: 1.5em;
+    margin-top: 2em;
+    margin-left: 1.5em;
+}
+
 .score-list {
     list-style: none;
     width: 95%;
@@ -355,6 +363,17 @@ h2 span {
     position: relative;
     margin-top: 1.5em;
     margin-left: 0.8em;
+}
+
+.clear-scores-btn {
+    cursor: pointer;
+    position: absolute;
+    bottom: 2em;
+    right: 1em;
+    font-family: 'Antique Olive Nord';
+    height: 2.5em;
+    width: 5em;
+    font-size: 1.2em;
 }
 
 .close-btn {
@@ -387,7 +406,7 @@ h2 span {
     background-color: #F4F3F3;
     width: 3.5em;
     height: 3.5em;
-    display: none;
+    display: grid;
     place-items: center;
     border-radius: 50%;
     cursor: pointer;

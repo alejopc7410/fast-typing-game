@@ -1,6 +1,6 @@
 'use strict';
 import { select, onEvent, words } from './utility.js';
-import { recordScore, scoreArray, hideScore, showScore } from './record-score.js';
+import { recordScore, scoreArray, hideScore, showScore, validateScores, clearScore } from './record-score.js';
 import { Score } from './Score.js'
 
 const backgroundSound = select('.background-sound')
@@ -17,7 +17,7 @@ const endModal = select('.end-modal')
 const startBtn = select('.start-btn')
 const wordOutput = select('.word');
 const closeBtn = select('.close-btn')
-const finalScoreDiv = select('.final-score')
+const clearScoreBtn = select('.clear-scores-btn')
 const showScoreBtn = select('.show-score-btn')
 const timer = select('.timer');
 const input = select('input');
@@ -32,6 +32,7 @@ let currentWord;
 let points = 0;
 let timeLeft;
 let timing;
+let scoreNumber = 1
 scoreArray;
 
 function randomWord() {
@@ -59,7 +60,7 @@ function inputVerification() {
 };
 
 function time() {
-    timeLeft = 19;
+    timeLeft = 9;
     timing = setInterval(() => {
             timer.textContent = timeLeft;
             timeLeft--;
@@ -67,11 +68,14 @@ function time() {
                 backgroundSound.pause()
                 audiaoCar.play();
                 displayRecord()
-                showScoreBtn.style.display = 'grid'
                 recordScore(scoreList, points)
+                scoreNumber++;
+                validateScores()
+                hideScore()
             };
         }, 1000);
 };
+
 
 function getDate() {
     let date = new Date();
@@ -93,6 +97,7 @@ function start() {
     motorSound.play();
     time();
     randomWord();
+    validateScores();
 }
 
 function restart() {
@@ -113,6 +118,7 @@ onEvent('ended', backgroundSound, () => {backgroundSound.play();})
 setInterval(() => {input.classList.remove('green-shadow')}, 1500);
 setInterval(() => {input.classList.add('green-shadow')}, 750);
 onEvent('ended', motorSound, () => {backgroundSound.play();})
+onEvent('click', clearScoreBtn, clearScore)
 onEvent('click', closeBtn, hideScore)
 onEvent('click', showScoreBtn, showScore)
 onEvent('input', input, inputVerification);
